@@ -1,12 +1,23 @@
-const {Builder} = require("selenium-webdriver");
+const webdriver = require("selenium-webdriver");
+const chrome = require('selenium-webdriver/chrome');
+const chromedriver = require('chromedriver');
 
-require("chromedriver");
 
 async  function test()  {
+    chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
+
+
+    let options = new chrome.Options();
+    //Below arguments are critical for Heroku deployment
+    //options.addArguments("--headless");
+    options.addArguments("--disable-gpu");
+    options.addArguments("--no-sandbox");
  
     //To wait for browser to build and launch properly
-    let driver = await new Builder().forBrowser("chrome").build();
-
+    let driver = await new webdriver.Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(options)
+    .build();
      //To fetch http://google.com from the browser with our code.
      await driver.get("https://www.ez-park.net/visitors/");
          
