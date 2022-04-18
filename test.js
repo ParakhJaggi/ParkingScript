@@ -1,9 +1,8 @@
-const {By,Key,Builder} = require("selenium-webdriver");
+const {Builder} = require("selenium-webdriver");
 
 require("chromedriver");
 
 async  function test()  {
-    var searchString = "Automation testing with Selenium and JavaScript";
  
     //To wait for browser to build and launch properly
     let driver = await new Builder().forBrowser("chrome").build();
