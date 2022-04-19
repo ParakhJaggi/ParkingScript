@@ -74,7 +74,10 @@ async function test() {
 }
 
 app.get("/", (req, res) => {
-  test().then((result) => res.send(result));
+  test().then((result) =>{
+    res.set('Content-Type', 'text/html');
+    res.send(Buffer.from(`<h1>${result}</h1>`));
+  }) ;
 });
 
 app.listen(PORT, () => {
