@@ -51,15 +51,15 @@ async function test() {
   await driver.findElement({ id: "MainContent_btn_Vehicle_Next" }).click();
 
   await driver.sleep(1000);
-  await driver.findElement({ id: "MainContent_btn_Auth_Next" }).click();
+  await driver.findElement({ id: "MainContent_btn_Auth_Next" }).then((el) => el.click()).catch((er) => {return 'refresh page'});
   await driver.sleep(1000);
   await driver
     .findElement({ id: "MainContent_txt_Review_PlateNumber" })
     .sendKeys("PMV3505");
 
-  await driver.findElement({ id: "MainContent_cb_Confirm" }).click();
+  await driver.findElement({ id: "MainContent_cb_Confirm" }).then((el) => el.click()).catch((er) => {return 'refresh page'});;
   await driver.sleep(3000);
-  await driver.findElement({ id: "MainContent_btn_Submit" }).click();
+  await driver.findElement({ id: "MainContent_btn_Submit" }).then((el) => el.click()).catch((er) => {return 'refresh page'});;
   await driver.sleep(6000);
 
   //Verify the page title and print it
