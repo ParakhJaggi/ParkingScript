@@ -9,7 +9,7 @@ async  function test()  {
 
     let options = new chrome.Options();
     //Below arguments are critical for Heroku deployment
-    //options.addArguments("--headless");
+    options.addArguments("--headless");
     options.addArguments("--disable-gpu");
     options.addArguments("--no-sandbox");
  
@@ -52,16 +52,17 @@ async  function test()  {
 
      await driver.findElement({id: 'MainContent_cb_Confirm'}).click();
      await driver.findElement({id: 'MainContent_btn_Submit'}).click();
+     await driver.sleep(1000);
 
 
-/*
+
      //Verify the page title and print it
-     var title = await driver.getTitle();
-     console.log('Title is:',title);
+     var result = await driver.findElement({id: 'MainContent_pnl_Results'}).getText();
+     console.log('result is:',result);
 
      //It is always a safe practice to quit the browser after execution
      await driver.quit();
-*/
+
 
 }
 
