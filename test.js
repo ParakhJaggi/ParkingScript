@@ -12,7 +12,7 @@ async function test() {
 
   let options = new chrome.Options();
   //Below arguments are critical for Heroku deployment
-
+  options.addArguments("--headless");
   options.addArguments("--disable-gpu");
   options.addArguments("--no-sandbox");
 
