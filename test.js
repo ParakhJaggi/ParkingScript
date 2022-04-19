@@ -1,3 +1,6 @@
+const express = require('express')
+const app = express()
+const PORT = process.env.PORT || 5000;
 const webdriver = require("selenium-webdriver");
 const chrome = require('selenium-webdriver/chrome');
 const chromedriver = require('chromedriver');
@@ -9,7 +12,7 @@ async  function test()  {
 
     let options = new chrome.Options();
     //Below arguments are critical for Heroku deployment
-    options.addArguments("--headless");
+   
     options.addArguments("--disable-gpu");
     options.addArguments("--no-sandbox");
  
@@ -52,7 +55,7 @@ async  function test()  {
 
      await driver.findElement({id: 'MainContent_cb_Confirm'}).click();
      await driver.findElement({id: 'MainContent_btn_Submit'}).click();
-     await driver.sleep(1000);
+     await driver.sleep(6000);
 
 
 
@@ -62,8 +65,15 @@ async  function test()  {
 
      //It is always a safe practice to quit the browser after execution
      await driver.quit();
-
+     return result;
 
 }
 
-test();
+app.get('/', (req, res) => {
+    test().then((result) => res.send(result));
+    
+  })
+
+  app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`)
+  })
