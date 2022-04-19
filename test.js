@@ -58,6 +58,7 @@ async function test() {
     .sendKeys("PMV3505");
 
   await driver.findElement({ id: "MainContent_cb_Confirm" }).click();
+  await driver.sleep(3000);
   await driver.findElement({ id: "MainContent_btn_Submit" }).click();
   await driver.sleep(6000);
 
